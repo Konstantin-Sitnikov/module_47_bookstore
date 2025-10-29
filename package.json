@@ -1,0 +1,19 @@
+{
+  "name": "module_47_bookstore",
+  "version": "1.0.0",
+  "description": "",
+  "main": "task.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Konstantin-Sitnikov/module_47_bookstore.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Konstantin-Sitnikov/module_47_bookstore/issues"
+  },
+  "homepage": "https://github.com/Konstantin-Sitnikov/module_47_bookstore#readme"
+}
