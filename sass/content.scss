@@ -1,13 +1,12 @@
 .content {
-    width: 100%;
+    width: 1120px;
     margin-top: 3px;
     position: relative;
-    border: 1px solid black;
     display: flex;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-}
+    }
 
 .content__container {
     display: flex;
@@ -49,7 +48,7 @@
 .content__container--categories {
     position: absolute;
     top: 836px;
-    left: 0px;
+    left: -160px;
     width: 416px;
     background-color: #EFEEF6;
     display: flex;
@@ -58,6 +57,28 @@
 
 }
 
+
+
+.content__container--book-cards {
+    width: 924px;
+    margin-top: 151px;
+
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    align-self: self-end;
+    flex-wrap: wrap;
+    row-gap: 96px;
+    z-index: 2;
+
+
+}
+
+
+.content__container--button {
+    width: 100%;
+    justify-content: center;
+}
 
 
 

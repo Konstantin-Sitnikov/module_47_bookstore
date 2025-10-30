@@ -1,0 +1,11 @@
+@import "var";
+
+.button {
+    width: 176px;
+    height: 45px;
+    color: $buttonColor;
+    border: 1px solid $buttonColor;
+    background-color: $buttonBckgColor;
+    text-transform: uppercase;
+    cursor: pointer;
+}

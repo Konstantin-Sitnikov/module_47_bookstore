@@ -23,3 +23,10 @@
         src: local("Montserrat"),
                 url("../fonts/Montserrat-Black.woff") format("woff");
     }
+
+
+        @font-face {
+        font-family: "OpenSans-Regular";
+        src: local("OpenSans"),
+                url("../fonts/OpenSans-Regular.woff") format("woff");
+    }

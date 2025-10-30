@@ -9,7 +9,7 @@
 }
 
 .header__logo {
-    font-family: Montserrat-Bold;
+    font-family: $fontBold;
     font-size: 24px;
     line-height: 100%;
     color: $text-color-black;
@@ -36,7 +36,7 @@
 .header__link {
 
     text-decoration: none;
-    font-family: Montserrat-Bold;
+    font-family: $fontBold;
     font-size: 10px;
     line-height: 100%;
     color: $text-color-grey;
