@@ -22,33 +22,17 @@ let categoryesList = ["Architecture", "Art & Fashion", "Biography", "Business",
 	"Travel & Maps"
 ]
 
-
-
-
-
-function addInfoToHtml (object) {
-
-	const contentTextCity = document.querySelector(".content__text--city")
-	const contentTextArea = document.querySelector(".content__text--area")
-	const contentTextRepairTime = document.querySelector(".content__text--repair-time")
-	const contentTextRepairRcost = document.querySelector(".content__text--repair-rcost")
-	const contentContainerImg = document.querySelector(".content__container--img")
-
-	contentTextCity.innerHTML = `${object.city}<br>${object.district}`
-	contentTextArea.innerHTML = `${object["apartment area"]}`
-	contentTextRepairTime.innerHTML = `${object["repair time"]}`
-	contentTextRepairRcost.innerHTML = `${object["repair rcost"]}`
-	contentContainerImg.innerHTML = `<img src="${object['img sqr']}" alt="foto" class="content__img">` 
-
-}
+let imageList = ["img/banner.png", "img/banner.png", "img/banner.png"]
 
 function addCategoriesToHtml(list) {
 	const contentCategories = document.querySelector(".content__categories")
+
 
 	const firstСategory = list[0]
 	const remainingListCategories = list.slice(1)
 
 	contentCategories.innerHTML += `<li data-id="${firstСategory}" class="content__item content__item--active">${firstСategory}</li>`
+	
 	
 	for (cat of remainingListCategories) {
 		contentCategories.innerHTML += `<li data-id="${cat}" class="content__item">${cat}</li>`
@@ -56,4 +40,32 @@ function addCategoriesToHtml(list) {
 
 }
 
+
+function addBannerToHtml(count, list) {
+
+	const contentImgBanner = document.querySelector(".content__container--img-slider")
+	contentImgBanner.innerHTML = `<img class="content__img content__img--banner" src=${list[count]} alt="Фото">`
+}
+
+
+
+function addMarkersToHtml(list) {
+
+	const contentContainerMarkers = document.querySelector(".content__container--markers")
+
+
+	for (i = 0; i < list.length; i++ ) {
+		if (i === 0) {
+			contentContainerMarkers.innerHTML += `<div data-id="${i}" class="content__marker content__marker--active"></div>`
+			addBannerToHtml(i, list)
+		} else {
+			contentContainerMarkers.innerHTML += `<div data-id="${i}" class="content__marker"></div>`
+		}
+		
+	}
+
+}
+
+
 addCategoriesToHtml(categoryesList)
+addMarkersToHtml(imageList)
