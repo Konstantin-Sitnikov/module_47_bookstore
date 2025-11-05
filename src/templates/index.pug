@@ -1,0 +1,21 @@
+doctype html
+html(lang='ru')
+  head
+    meta(charset='UTF-8')
+    meta(name='viewport' content='width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0')
+    meta(http-equiv='X-UA-Compatible' content='ie=edge')
+    title Test
+    link(rel='stylesheet' href='/main.css')
+    link(rel='stylesheet' href='../src/css/font.css')
+  body.body
+    header.header
+      include header.pug
+    main.content
+      .content__container.content__container--img-slider
+      .content__container.content__container--markers
+      .content__container.content__container--categories
+        ul.content__categories
+      .content__container.content__container--book-cards
+      .content__container.content__container--button
+        button.button.button--load-more Load more
+    script(type='text/javascript' src='./output/main.js')

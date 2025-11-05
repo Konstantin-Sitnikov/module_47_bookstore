@@ -1,9 +1,13 @@
-	import {addBookCards, addCategoriesToHtml, addBannerToHtml, addMarkersToHtml} from "./addToHTML"
+	import {addBookCards, addBannerToHtml, addMarkersToHtml} from "./addToHTML"
 	import { Slider } from "./slider"
+	import "../sass/style.scss"
+
+	const pug = require('pug');
+
 	
 	
 	
-	let imageList = ["src/img/banner.png", "src/img/banner2.png", "src/img/banner3.png"]
+	let imageList = ["../src/img/banner.png", "../src/img/banner2.png", "../src/img/banner3.png"]
 
 
     let categoryesList = ["Architecture", "Art & Fashion", "Biography", "Business",

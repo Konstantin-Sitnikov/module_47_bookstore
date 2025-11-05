@@ -19,7 +19,7 @@ function addBookCards (object) {
 	if (object.saleInfo.saleability === "FOR_SALE") {
 		price = `${object.saleInfo.retailPrice.amount} ${object.saleInfo.retailPrice.currencyCode}`
 	} 
-	
+
 		
 	let htmlBookCards = `
 				<div class="book-cards">
