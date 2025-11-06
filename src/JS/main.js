@@ -17,9 +17,12 @@
 
 	
 let books = new Books(categoryesList)
+let slider = new Slider(imageList)
 
 
 const categories = document.querySelectorAll(".content__item")
+const buttonLoadMore = document.querySelector(".button__load-more")
+const contentMarker = document.querySelectorAll(".content__marker")
 
 function addClickCategory (list) {
 	for (let object of list) {
@@ -27,42 +30,14 @@ function addClickCategory (list) {
 			books.setActiveCategories(this.dataset.id)
 		});
 	}
+	
 }
 
-
-addClickCategory(categories)
-
-
-
-
-const buttonLoadMore = document.querySelector(".button--load-more")
-
-
-
-buttonLoadMore.addEventListener("click", () => {
-	books.fetchData()
-} )
-	
-
-
-
-let slider = new Slider(imageList, addBannerToHtml)
-
-
-
-
-addMarkersToHtml(imageList)
-slider.startScroll()
-
-
-
-const contentMarker = document.querySelectorAll(".content__marker")
-
-function addEventClickToHtml (list) {
+function addClickMarker (list) {
 	for (let object of list) {
 		object.addEventListener("click",  function(){
 
-			addBannerToHtml(Number(this.dataset.id), imageList)
+			slider.addBannerToHtml(Number(this.dataset.id))
 			slider.setCount(Number(this.dataset.id))
 			slider.startScroll()
 
@@ -70,7 +45,18 @@ function addEventClickToHtml (list) {
 			}
 }
 
-addEventClickToHtml(contentMarker)
+
+function addClickButtonLoadMore () {
+	buttonLoadMore.addEventListener("click", () => {
+		books.fetchData()
+	})
+}
+
+
+
+addClickCategory(categories)
+addClickButtonLoadMore()
+addClickMarker(contentMarker)
 
 
 

@@ -9,10 +9,10 @@
     width: 1440px;
     display: flex;
     margin: auto;
+    position: relative;
     flex-direction: column;
     justify-content: start;
     align-items: center;
-    contain: layout;
-    overflow-x: auto;
+    overflow-x: scroll;
 
 }

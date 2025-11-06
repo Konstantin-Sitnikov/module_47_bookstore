@@ -1,3 +1,18 @@
+const error = {
+    "error": {
+        "code": 503,
+        "message": "Service temporarily unavailable.",
+        "errors": [
+            {
+                "message": "Service temporarily unavailable.",
+                "domain": "global",
+                "reason": "backendFailed"
+            }
+        ]
+    }
+}
+
+
 class Books {
 	
 	constructor(list) {
@@ -6,22 +21,45 @@ class Books {
 			this.key = "AIzaSyAAe2ikW9G4PehhqDt_9eo0KZSXoj5-3WI"
 			this.contentCategories = document.querySelector(".content__categories")
 			this.containerBookCards = document.querySelector(".content__container--book-cards")
+			this.loader = document.querySelector(".loader")
 			this.categorySearch = "Humor"
 			this.categories = list
 			this.addCategoriesToHtml()
 		}
 
 		async fetchData() {
-			this.data = await fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${this.categorySearch}"&key=${this.key}&printType=books&startIndex=${this.loadindex}&maxResults=6&langRestrict=en`);
-			this.response = await this.data.json();
-            console.log(this.response.items)
-
-			for (let book of this.response.items) {
-				this.addBookCards(book)
+			try {
+				this.startLoader()
+				this.data = await fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${this.categorySearch}"&key=${this.key}&printType=books&startIndex=${this.loadindex}&maxResults=6&langRestrict=en`);
+				this.response = await this.data.json();
+				if (!this.response.error) {
+					for (let book of this.response.items) {
+						this.addBookCards(book)
+					}
+					this.loadindex += 6
+				} else {
+					 throw new Error(`Что-то пошло не так: Код: ${this.response.error.code}, message: ${this.response.error.message}`)
+				}
+					
+			} 
+			catch (err) {
+				console.log("Ошибка:",err.message)
+				}
+			finally {
+				this.stopLoader()
 			}
-			this.loadindex += 6
-		};
+			}
 
+		
+
+		startLoader () {
+			this.loader.style.display = "block"
+		}
+		
+		stopLoader() {
+			this.loader.style.display = "none"
+		}
+			
 
 		addCategoriesToHtml() {						
 			for (let category of this.categories) {
@@ -31,7 +69,6 @@ class Books {
 		}
 
 		setActiveCategories(category) {
-			console.log("start")
 
 			for (let cat of this.contentCategories.querySelectorAll(".content__item")) {
 				cat.classList.remove("content__item--active")
@@ -46,6 +83,7 @@ class Books {
 
 		addBookCards (object) {
 	
+			let id = object.id
 			let urlImg = object.volumeInfo.imageLinks.thumbnail;
 			let authors = object.volumeInfo.authors.join(', ');
 			let title = object.volumeInfo.title;
@@ -92,12 +130,19 @@ class Books {
 								</div>
 								<span class="book-cards__description">${description}</span>
 								<span class="book-cards__price">${price}</span>
-								<button class="button button__book-cards ${buttonClass}">${buttonBody}</button>
+								<button data-id="${id}" class="button button__book-cards ${buttonClass}">${buttonBody}</button>
 							</div>
 						</div>`
 
 			
 				this.containerBookCards.innerHTML += htmlBookCards
+
+				let button = document.querySelector(`[data-id="${id}"]`)
+				console.log(button)
+				button.addEventListener("click", ()=> {
+					console.log("click")})
+				
+
 
 			}
 

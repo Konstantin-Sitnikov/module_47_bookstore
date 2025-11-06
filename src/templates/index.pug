@@ -11,11 +11,13 @@ html(lang='ru')
     header.header
       include header.pug
     main.content
+      .loader 
+        .animation
       .content__container.content__container--img-slider
       .content__container.content__container--markers
       .content__container.content__container--categories
         ul.content__categories
       .content__container.content__container--book-cards
       .content__container.content__container--button
-        button.button.button--load-more Load more
+        button.button.button__load-more Load more
 

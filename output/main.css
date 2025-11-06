@@ -12,11 +12,11 @@
   width: 1440px;
   display: flex;
   margin: auto;
+  position: relative;
   flex-direction: column;
   justify-content: start;
   align-items: center;
-  contain: layout;
-  overflow-x: auto;
+  overflow-x: scroll;
 }
 
 .header {
@@ -25,6 +25,9 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  z-index: 3;
+  background-color: #FFFFFF;
 }
 
 .header__logo {
@@ -94,7 +97,7 @@
 
 .content {
   width: 1120px;
-  margin-top: 3px;
+  margin-top: 119px;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -164,6 +167,26 @@
   z-index: 2;
 }
 
+.loader {
+  position: fixed;
+  width: 50px;
+  height: 50px;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  display: none;
+}
+
+.animation {
+  width: 50px;
+  height: 50px;
+  border: 5px solid #ccc;
+  border-top: 5px solid #333;
+  border-radius: 50%;
+  animation: css-animation-spin 1s linear infinite;
+}
+
 .content__container--button {
   width: 100%;
   justify-content: center;
@@ -204,6 +227,14 @@
   left: -20px;
 }
 
+@keyframes css-animation-spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
 .book-cards {
   width: 424px;
   height: 300px;
