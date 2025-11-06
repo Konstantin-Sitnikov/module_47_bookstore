@@ -12,7 +12,9 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template:"./src/templates/index.pug",
-            filename: "index.html"
+            filename: "index.html",
+            minify: false,
+
         }
         ),
          new MiniCssExtractPlugin()
@@ -26,7 +28,8 @@ module.exports = {
 
             {
                 test: /\.pug$/,
-                use: 'pug-loader'
+                use: 'pug-loader',
+                options: {pretty: true},
             }
         ]
     },

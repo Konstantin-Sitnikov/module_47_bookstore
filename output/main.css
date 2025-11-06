@@ -229,6 +229,20 @@
   left: 0;
   font-family: OpenSans-Regular;
   font-size: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+}
+
+.book-cards__authors:hover {
+  height: auto;
+  overflow: visible;
+  text-overflow: initial;
+  display: inline-block;
+  z-index: 2;
+  background-color: #FFFFFF;
 }
 
 .book-cards__title {
@@ -247,7 +261,6 @@
 }
 
 .book-cards__title:hover {
-  position: absolute;
   height: auto;
   overflow: visible;
   text-overflow: initial;
@@ -303,8 +316,19 @@
   cursor: pointer;
 }
 
-.button--book-cards {
+.button__book-cards {
   position: absolute;
   top: 158px;
   left: 0;
+}
+
+.button__book-cards--active {
+  color: #5C6A79;
+  border: 1px solid #EEEDF5;
+}
+
+.button__book-cards--not-sale {
+  border: 1px solid red;
+  color: red;
+  cursor: default;
 }

@@ -1,10 +1,8 @@
-	import {addBookCards, addBannerToHtml, addMarkersToHtml} from "./addToHTML"
+	import {addBannerToHtml, addMarkersToHtml} from "./addToHTML"
 	import { Slider } from "./slider"
+	import { Books } from "./books"
 	import "../sass/style.scss"
 
-	const pug = require('pug');
-
-	
 	
 	
 	let imageList = ["../src/img/banner.png", "../src/img/banner2.png", "../src/img/banner3.png"]
@@ -16,54 +14,9 @@
 	"Travel & Maps"]
 	
 
-class GetBooks {
+
 	
-	constructor(funcAddBook, list) {
-		
-			this.loadindex = 0 
-			this.key = "AIzaSyAAe2ikW9G4PehhqDt_9eo0KZSXoj5-3WI"
-			this.contentCategories = document.querySelector(".content__categories")
-			this.containerBookCards = document.querySelector(".content__container--book-cards")
-			this.categorySearch = "Humor"
-			this.funcAddBook = funcAddBook
-			this.categories = list
-			this.addCategoriesToHtml()
-		}
-
-		async fetchData() {
-			this.data = await fetch(`https://www.googleapis.com/books/v1/volumes?q="subject:${this.categorySearch}"&key=${this.key}&printType=books&startIndex=${this.loadindex}&maxResults=6&langRestrict=en`);
-			this.response = await this.data.json();
-			for (let book of this.response.items) {
-				this.funcAddBook(book)
-			}
-			this.loadindex += 6
-		};
-
-
-		addCategoriesToHtml() {						
-			for (let category of this.categories) {
-				this.contentCategories.innerHTML += `<li data-id="${category}" class="content__item">${category}</li>`
-			}
-			this.setActiveCategories(this.categories[0])
-		}
-
-		setActiveCategories(category) {
-
-			for (let cat of this.contentCategories.querySelectorAll(".content__item")) {
-				cat.classList.remove("content__item--active")
-			}
-			let activeCategory = this.contentCategories.querySelector(`[data-id="${category}"`)
-			activeCategory.classList.add("content__item--active")
-			this.categorySearch = category
-			this.loadindex = 0
-			this.containerBookCards.innerHTML = ""
-			this.fetchData()
-		}
-
-
-}
-	
-let books = new GetBooks(addBookCards, categoryesList)
+let books = new Books(categoryesList)
 
 
 const categories = document.querySelectorAll(".content__item")
