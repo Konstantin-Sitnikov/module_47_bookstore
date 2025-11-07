@@ -1,4 +1,3 @@
-	import {addBannerToHtml, addMarkersToHtml} from "./addToHTML"
 	import { Slider } from "./slider"
 	import { Books } from "./books"
 	import "../sass/style.scss"

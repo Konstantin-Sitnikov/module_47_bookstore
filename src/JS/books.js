@@ -83,67 +83,120 @@ class Books {
 
 		addBookCards (object) {
 	
-			let id = object.id
-			let urlImg = object.volumeInfo.imageLinks.thumbnail;
-			let authors = object.volumeInfo.authors.join(', ');
-			let title = object.volumeInfo.title;
-			let averageRating = '';
-			let ratingsCount = '';
+			this.id = object.id
+			this.urlImg = object.volumeInfo.imageLinks.thumbnail;
+			this.authors = object.volumeInfo.authors.join(', ');
+			this.title = object.volumeInfo.title;
+			this.averageRating = '';
+			this.ratingsCount = '';
 			if (object.volumeInfo.averageRating) {
-				averageRating = object.volumeInfo.averageRating
-				ratingsCount = object.volumeInfo.ratingsCount
+				this.averageRating = object.volumeInfo.averageRating
+				this.ratingsCount = object.volumeInfo.ratingsCount
 			}
 
 
-			let description = object.volumeInfo.description;
+			this.description = object.volumeInfo.description;
             let sale = object.saleInfo.saleability
-			let price = ""
-            let buttonClass = ""
-            let buttonBody = ""
+			this.price = ""
+            this.buttonClass = ""
+            this.buttonBody = ""
 			if (sale === "FOR_SALE") {
-				price = `${object.saleInfo.retailPrice.amount} ${object.saleInfo.retailPrice.currencyCode}`
-                buttonClass = "button__book-cards"
-                buttonBody = "buy now"
+				this.price = `${object.saleInfo.retailPrice.amount} ${object.saleInfo.retailPrice.currencyCode}`
+                this.buttonClass = "button__book-cards"
+                this.buttonBody = "buy now"
                 
 			}
 
             if (sale === "FREE") {
-                price = "FREE"
-				buttonClass = "button__book-cards"
-                buttonBody = "buy now"
+                this.price = "FREE"
+				this.buttonClass = "button__book-cards"
+                this.buttonBody = "buy now"
 			}
             
             if (sale === "NOT_FOR_SALE") {
-                 buttonClass = "button__book-cards--not-sale"
-                 buttonBody = "not sale"
+                 this.buttonClass = "button__book-cards--not-sale"
+                 this.buttonBody = "not sale"
             }
 
-			let htmlBookCards = `
-						<div class="book-cards">
-							<img class="book-cards__img" src=${urlImg} alt="Foto book">
-							<div class="book-cards__info ">
-								<span class="book-cards__authors">${authors}</span>
-								<span class="book-cards__title">${title}</span>
-								<div class="book-cards__rating">
-									<div class="book-cards__average-rating">${averageRating}</div>
-									<span class="book-cards__ratings-count">${ratingsCount}</span>
-								</div>
-								<span class="book-cards__description">${description}</span>
-								<span class="book-cards__price">${price}</span>
-								<button data-id="${id}" class="button button__book-cards ${buttonClass}">${buttonBody}</button>
-							</div>
-						</div>`
+			this.htmlPatternBookCards()
 
+			}
+
+		htmlPatternBookCards(){
 			
-				this.containerBookCards.innerHTML += htmlBookCards
+			let bookCards = document.createElement("div")
+			bookCards.classList.add("book-cards")
 
-				let button = document.querySelector(`[data-id="${id}"]`)
-				console.log(button)
-				button.addEventListener("click", ()=> {
-					console.log("click")})
+			let bookCardsImg = document.createElement("img")
+			bookCardsImg.src = this.urlImg
+			bookCardsImg.alt = "Foto book"
+			bookCardsImg.classList.add("book-cards__img")
+
+			bookCards.appendChild(bookCardsImg)
+
+			let bookCardsInfo = document.createElement("div")
+			bookCardsInfo.classList.add("book-cards__info")
+			
+			let bookCardsAuthors = document.createElement("span")
+			bookCardsAuthors.classList.add("book-cards__authors")
+			bookCardsAuthors.textContent = this.authors
+			bookCardsInfo.appendChild(bookCardsAuthors)
+
+
+			let bookCardsTitle = document.createElement("span")
+			bookCardsTitle.classList.add("book-cards__title")
+			bookCardsTitle.textContent = this.title
+			bookCardsInfo.appendChild(bookCardsTitle)
+
+			let bookCardsRating = document.createElement("div")
+			bookCardsRating.classList.add("book-cards__rating")
+
+			let bookCardsAverageRating = document.createElement("div")
+			bookCardsAverageRating.classList.add("book-cards__average-rating")
+			bookCardsAverageRating.textContent = this.averageRating
+			
+			bookCardsRating.appendChild(bookCardsAverageRating)
+			
+			let bookCardsRatingsCount = document.createElement("span")
+			bookCardsRatingsCount.classList.add("book-cards__ratings-count")
+			bookCardsRatingsCount.textContent = this.ratingsCount
+
+			bookCardsRating.appendChild(bookCardsRatingsCount)
+
+			bookCardsInfo.appendChild(bookCardsRating)
+			
+			let bookCardsDescription = document.createElement("span")
+			bookCardsDescription.classList.add("book-cards__description")
+			bookCardsDescription.textContent = this.description
+			bookCardsInfo.appendChild(bookCardsDescription)
+
+
+			let bookCardsPrice = document.createElement("span")
+			bookCardsPrice.classList.add("book-cards__price")
+			bookCardsPrice.textContent = this.price
+			bookCardsInfo.appendChild(bookCardsPrice)
+
+
+
+
+			let button = document.createElement("button")
+			button.dataset.id = this.id
+			button.classList.add("button", "button__book-cards" ,`${this.buttonClass}`)
+			button.textContent = this.buttonBody
+			button.addEventListener("click", function(event) {
 				
+				let button = event.currentTarget
+				if(!button.classList.contains("button__book-cards--not-sale")){
+					console.log(button.dataset.id)
+				}
+				
+			})
 
+			bookCardsInfo.appendChild(button)
 
+			bookCards.appendChild(bookCardsInfo)
+				
+			this.containerBookCards.appendChild(bookCards)
 			}
 
 
