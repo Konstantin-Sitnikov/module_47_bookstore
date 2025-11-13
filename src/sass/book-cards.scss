@@ -17,8 +17,6 @@
     height: 203px;
 }
 
-
-
 .book-cards__img {
 
     width: 212px;
@@ -54,7 +52,6 @@
     position: absolute;
     top: 18px;
     left: 0;
-    width: 176px;
     height: 20px;
     font-family: var.$fontBold;
     font-size: 16px;
@@ -83,8 +80,16 @@
     width: 121px;
     height: 14px;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
     align-items: center;
+    gap: 6px;
+}
+
+.book-cards__star {
+    fill: #EEEDF5;
+}
+.book-cards__star--activ {
+    fill: #F2C94C;
 }
 
 
@@ -94,13 +99,12 @@
     font-size: 10px;
 }
 
-
 .book-cards__description {
 
     position: absolute;
     top: 72px;
     left: 0;
-    width: 176px;
+    width: 100%;
     height: 42px;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -116,4 +120,59 @@
     position: absolute;
     top: 126px;
     left: 0;
+}
+
+
+
+
+/*iPadPro 12.9*/
+@media (min-width: 1024px) and (max-width: 1439px) {
+
+    .book-cards {
+        width: 410px;
+        height: 300px;
+    }
+
+}
+
+/*iPad mini*/
+@media (min-width: 768px) and (max-width: 1023px) {
+    .book-cards {
+        width: 350px;
+        height: 215px;
+    }
+    .book-cards__img {
+        width: 150px;
+        height: 214px;
+    }
+
+}
+
+/*iPhone 11 Pro Max */
+@media (min-width: 414px) and (max-width: 767px) {
+    
+  
+}
+
+/*iPhone SE */
+@media (min-width: 0px) and (max-width: 413px) {
+    .book-cards {
+        width: 100%;
+        height: auto;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .book-cards__img {
+        width: 230px;
+        height: 300px;
+
+    }
+
+    .book-cards__info {
+
+        width: 230px;
+        height: 203px;
+    }
+    
 }

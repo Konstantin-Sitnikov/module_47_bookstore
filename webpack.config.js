@@ -11,7 +11,7 @@ module.exports = {
     }, 
     plugins: [
         new HtmlWebpackPlugin({
-            template:"./src/templates/index.pug",
+            template:  path.resolve(__dirname, 'src/templates/index.pug'), 
             filename: "index.html",
             minify: false,
 
@@ -32,5 +32,7 @@ module.exports = {
             }
         ]
     },
-    mode: "development"
+    mode: "production"
 }
+
+//production development

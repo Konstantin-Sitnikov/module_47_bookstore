@@ -50,13 +50,26 @@ class Slider {
 	addMarkersToHtml() {
 
 	for (let i = 0; i < this.list.length; i++) {
-		this.contentContainerMarkers.innerHTML += `<div data-id="${i}" class="content__marker"></div>`
+		
+				let marker = document.createElement("div")
+				marker.dataset.id = i
+				marker.classList.add("content__marker")
+
+				marker.addEventListener("click", (event)=>{
+					let id = event.currentTarget.dataset.id
+										
+					this.addBannerToHtml(Number(id))
+					this.setCount(Number(id))
+					this.startScroll()
+				})
+
+				this.contentContainerMarkers.appendChild(marker)
+
 		}
 
     	this.addBannerToHtml(0)
     
 	}
-
 
 	Scroll() {
 		this.imageCount += 1
